@@ -4,12 +4,15 @@ import dotenv from 'dotenv';
 
 import Server from './config/server';
 import ErrorHandler from './handlers/ErrorHandler';
+import Mongoose from './config/database';
 
 dotenv.config({
     path: '.env'
 });
 
 const server = new Server();
+const mongo = new Mongoose();
+mongo.setup();
 
 server.app.use(bodyParser.urlencoded({extended: false}));
 server.app.use(bodyParser.json());
